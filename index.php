@@ -18,4 +18,5 @@ use Luracast\Restler\Restler;
 $r = new Restler();
 $r->addAPIClass('DemoConnector');
 $r->addAPIClass('Downloader');
+$r->addAPIClass('DownloaderFromRinggold');
 $r->handle();
