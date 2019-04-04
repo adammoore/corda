@@ -1,0 +1,83 @@
+[
+    {
+        "orcid": "0000-0001-6459-6227",
+        "source": "Haplo",
+        "names": [
+            "Julie Allinson"
+        ],
+        "typeOfPerson": [
+            "Researcher (past)"
+        ],
+        "emails": []
+    },
+    {
+        "names": "Julie Allinson",
+        "emails": [
+            "julie.allinson@london.ac.uk"
+        ],
+        "employment": [
+            "University of London",
+            "University of York",
+            "University of Bath",
+            "Manchester Metropolitan University",
+            "University of Nottingham",
+            "University of Liverpool",
+            "University of Liverpool"
+        ],
+        "source": "ORCID"
+    },
+    {
+        "orcid": "0000-0002-2085-1908",
+        "source": "Haplo",
+        "names": [
+            "Adam Vials Moore"
+        ],
+        "typeOfPerson": [
+            "Researcher"
+        ],
+        "emails": []
+    },
+    {
+        "names": "Adam Vials Moore",
+        "emails": [
+            "moore.adam@gmail.com",
+            "axm@cs.nott.ac.uk",
+            "adam.vialsmoore@jisc.ac.uk",
+            "adam.moore@tcd.ie",
+            "adam.moore@scss.tcd.ie",
+            "adam.moore@nottingham.ac.uk",
+            "adam.moore@liverpool.ac.uk",
+            "mooread@liv.ac.uk"
+        ],
+        "employment": [
+            "Joint Information Systems Committee Manchester Office"
+        ],
+        "source": "ORCID"
+    },
+    {
+        "orcid": "0000-0001-9813-5701",
+        "source": "Haplo",
+        "names": [
+            "Owen Stephens"
+        ],
+        "typeOfPerson": [
+            "Staff (past)"
+        ],
+        "emails": []
+    },
+    {
+        "names": "Owen Stephens",
+        "emails": [
+            "owen@ostephens.com"
+        ],
+        "employment": [
+            "Owen Stephens Consulting Ltd",
+            "Open University",
+            "Open University",
+            "Imperial College London",
+            "Royal Holloway University of London",
+            "Royal Holloway University of London"
+        ],
+        "source": "ORCID"
+    }
+]

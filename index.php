@@ -14,8 +14,10 @@
  */
 require_once '../../vendor/restler.php';
 use Luracast\Restler\Restler;
+use Luracast\Restler\Format\HtmlFormat;
 
 $r = new Restler();
+$r->setSupportedFormats('JsonFormat', 'HtmlFormat');
 $r->addAPIClass('DemoConnector');
 $r->addAPIClass('Downloader');
 $r->addAPIClass('DownloaderFromRinggold');

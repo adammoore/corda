@@ -1,0 +1,53 @@
+[
+  {
+    "names": [
+      "Julie Allinson"
+    ],
+    "typeOfPerson": [
+      "Researcher (past)"
+    ],
+    "emails": [],
+    "institutions": [],
+    "studentId": [],
+    "repositoryId": "81v15",
+    "orcid": [
+      "0000-0001-6459-6227"
+    ],
+    "orcidIsAuthenticated": false,
+    "publishedWorks": []
+  },
+  {
+    "names": [
+      "Adam Vials Moore"
+    ],
+    "typeOfPerson": [
+      "Researcher"
+    ],
+    "emails": [],
+    "institutions": [],
+    "studentId": [],
+    "repositoryId": "81v14",
+    "orcid": [
+      "0000-0002-2085-1908"
+    ],
+    "orcidIsAuthenticated": false,
+    "publishedWorks": []
+  },
+  {
+    "names": [
+      "Owen Stephens"
+    ],
+    "typeOfPerson": [
+      "Staff (past)"
+    ],
+    "emails": [],
+    "institutions": [],
+    "studentId": [],
+    "repositoryId": "81v13",
+    "orcid": [
+      "0000-0001-9813-5701"
+    ],
+    "orcidIsAuthenticated": false,
+    "publishedWorks": []
+  }
+]

@@ -1,6 +1,7 @@
+<html>
+<body>
 <?php
 require 'vendor/autoload.php';
-use Luracast\Restler\Format\HtmlFormat;
 
 function listToColumn($list){
 	$row_string = "<th>";
@@ -12,8 +13,6 @@ function listToColumn($list){
 }
 
 
-class Downloader{
-	public function ReturnIDList(){
 		$table_string = "<table>";
 		$headers_string = "<tr><th>Source</th><th>ORCID id</th><th>Name</th><th>Emails</th><th>Affiliations</th></tr>";
 		$table_string .= $headers_string;
@@ -43,7 +42,7 @@ class Downloader{
 		     		$raw_orcid = json_decode($response->getBody()->getContents());
 		     		$h1 = 'given-names';
 				$h2 = 'family-name';
-				$orcid_name_string =  array($raw_orcid->person->name->$h1->value.' '.$raw_orcid->person->name->$h2->value);
+				$orcid_name_string = ($raw_orcid->person->name->$h1->value.' '.$raw_orcid->person->name->$h2->value);
 		     		$orcid_data["names"] = $orcid_name_string;
 		     		$orcid_emails = array();
 		     		foreach ($raw_orcid->person->emails->email as $email_data){
@@ -81,8 +80,7 @@ class Downloader{
 		}
 		$table_string .= "</table>";
       		file_put_contents("data/output.json", json_encode($data, JSON_PRETTY_PRINT));
-		HtmlFormat::$data = $table_string;
-		return $table_string;
-	}
-}
+		echo $table_string;
 ?>
+</body>
+</html>
