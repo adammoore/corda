@@ -6,7 +6,7 @@ Two endpoints:
 - http://63.35.7.234/corda-restler/public/corda/index.php/DemoConnector/connect_eprints
 - http://63.35.7.234/corda-restler/public/corda/index.php/DemoConnector/connect_haplo
 
-These will make requests to Haplo and Eprints APIs, and return the JSON of these requests and place them into data/Eprints.json and data/Haplo.json respectively. Use this to get some data up and started for the Downloader methods. 
+These will make requests to Haplo and Eprints APIs, and return the JSON of these requests and place them into `data/Eprints.json` and `data/Haplo.json` respectively. Use this to get some data up and started for the Downloader methods. 
 
 # Downloader.php
 Two endpoints:
