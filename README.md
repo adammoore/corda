@@ -20,3 +20,7 @@ Will collect all of this data, and combine it into one large JSON format, then d
 
 ## PrintOutput
 This endpoint will run through the `data/output.json` file and convert it into a html table. 
+
+# Note on current design
+Design is currently set up such that there is an endpoint which collects haplo/eprints data, and caches it as a .json locally. 
+There is another endpoint which will collate all of this data into one file, making requests to the ORCID API to supplement the data. There is no merging or deduplication of data whatsoever, which would clearly be desirable. It is possible to look at a user and see whether or not various pieces of data from different systems match. 
