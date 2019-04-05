@@ -11,78 +11,126 @@ function listToColumn($list){
 	return $row_string;
 }
 
+function getOrcidData($orcid){
+	// gets ORCID data for a given orcid id and appiies it to our JSON format and returns that data
+        $client = new \GuzzleHttp\Client();
+	$orcid_employment_url = "https://pub.orcid.org/v2.1/";
+	try{
+		$response = $client->request('GET', $orcid_employment_url.$orcid, ["headers" => [ "Accept" => "application/vnd.orcid+json"]]);
+	} catch (Exception $e){
+		return null;
+	}
+	if ($response->getStatusCode()!=200){
+		return null;
+	}
+	$raw_orcid = json_decode($response->getBody()->getContents());
+	$orcid_data = array();
+	$orcid_data["orcid"] = array($orcid);
+        $orcid_name_string =  array($raw_orcid->person->name->{given-names}->value.' '.$raw_orcid->person->name->{family-name}->value);
+        $orcid_data["names"] = $orcid_name_string;
+        $orcid_emails = array();
+        foreach ($raw_orcid->person->emails->email as $email_data){
+	        array_push($orcid_emails, $email_data->email);
+        }
+        $orcid_data["emails"] = $orcid_emails;
+        $h3 = 'activities-summary';
+        $h4 = 'employment-summary';
+        $all_orgs = array();
+        foreach ($raw_orcid->$h3->employments->$h4 as $employment){
+       		array_push($all_orgs, $employment->organization->name);
+	}
+        $orcid_data["employment"] = $all_orgs;
+        $orcid_data["source"] = "ORCID";
+        return $orcid_data;
+}
+
+function deriveOrcidUser($person){
+	// implement this function to use data in the person record to derive ORCID data 
+}
+
+
+function addOrcidToData($data, $source){
+	// Takes some data (Haplo or EPrints) and returns a list of JSON objects with ORCID data added in
+	$output_data = array();
+	foreach ($data as $person){
+		$person_data = $person;
+		$person_data["source"] = $source;
+		// if this person already has an ORCID, make a request to the ORCID API to find the contents of this user's ORCID record additionally
+		if ($person["orcid"]){
+			$person_orcid = ($person["orcid"])[0];
+			$orcid_data = getOrcidData($person_orcid);
+			if ($orcid_data){
+				array_push($output_data, $orcid_data);
+			}
+		}
+		else{
+			deriveOrcidUser($person);
+		}
+		array_push($output_data, $person_data);
+	}
+	return $output_data;
+}
+
+function convertDataToHtml($data){
+	$html = "<table><tr><th>Source</th><th>ORCID id</th><th>Names</th><th>Emails</th><th>Employment</th><th>typeOfPerson</th></tr>";
+	foreach($data as $datatable){
+		foreach($datatable as $person){
+			$person_html = "<tr>";
+			$person_html .= "<th>".$person->source."</th>";
+			if ($person->orcid){
+				$person_html .= "<th>".($person->orcid)[0]."</th>";
+			}
+			else {
+				$person_html .= "<th></th>";
+			}
+			if ($person->names){
+				$person_html .= listToColumn($person->names);
+			}
+			else {
+				$person_html .= "<th></th>";
+			}
+			if ($person->emails){
+				$person_html .= listToColumn($person->emails);
+			}
+			else{
+				$person_html .= "<th></th>";
+			}
+			if ($person->employment){
+				$person_html .= listToColumn($person->employment);
+			}
+			else {
+				$person_html .= "<th></th>";
+			}
+			if ($person->typeOfPerson){
+				$person_html .= "<th>".($person->typeOfPerson)[0]."</th>";
+			}
+			else{
+				$person_html .= "<th></th>";
+			}
+			$person_html .= "</tr>";
+			$html .= $person_html;
+		}
+	}
+	$html .= "</table>";
+	return $html;
+}
 
 class Downloader{
 	public function ReturnIDList(){
-		$table_string = "<table>";
-		$headers_string = "<tr><th>Source</th><th>ORCID id</th><th>Name</th><th>Emails</th><th>Affiliations</th></tr>";
-		$table_string .= $headers_string;
-		$haplo_file = file_get_contents("data/Haplo_small.json");
-     		$haplo_data = json_decode($haplo_file);
-     		$orcid_url = "https://pub.orcid.org/v2.1/search/?q=";
-     		$orcid_employment_url = "https://pub.orcid.org/v2.1/";
-     		$client = new \GuzzleHttp\Client();
-     		$data = array();
-     		foreach ($haplo_data as $person){
-	     		$person_data = array();
-			$haplo_data = array();
-			$haplo_string = "<tr><th>Haplo</th>";
-			$orcid_data = array();
-			$orcid_string = "<tr><th>ORCID</th>";
-			if ($person->orcid){
-		      		$person_orcid = ($person->orcid)[0];
-		    		$haplo_data["orcid"] = $person_orcid;
-		     		$haplo_data["source"] = "Haplo";
-				$haplo_data["names"] = $person->names;
-				$haplo_name_string = listToColumn($person->names);
-				$haplo_data["typeOfPerson"] = $person->typeOfPerson;
-				$haplo_type_string = listToColumn($person->typeOfPerson);
-				$haplo_data["emails"] = $person->emails;
-				$haplo_email_string = listToColumn($person->emails);
-		     		$response = $client->request('GET', $orcid_employment_url.$person_orcid, ["headers" => [ "Accept" => "application/vnd.orcid+json"]]);
-		     		$raw_orcid = json_decode($response->getBody()->getContents());
-		     		$h1 = 'given-names';
-				$h2 = 'family-name';
-				$orcid_name_string =  array($raw_orcid->person->name->$h1->value.' '.$raw_orcid->person->name->$h2->value);
-		     		$orcid_data["names"] = $orcid_name_string;
-		     		$orcid_emails = array();
-		     		foreach ($raw_orcid->person->emails->email as $email_data){
-			     		array_push($orcid_emails, $email_data->email);
-		     		}
-				$orcid_data["emails"] = $orcid_emails;
-				$orcid_email_string = listToColumn($orcid_emails);
-		     		$hacky_string = 'activities-summary';
-		     		$hacky_string_2 = 'employment-summary';
-		     		$all_orgs = array();
-		     		foreach ($raw_orcid->$hacky_string->employments->$hacky_string_2 as $employment){
-			     		array_push($all_orgs, $employment->organization->name);
-				}
-				$orcid_employment_string = listToColumn($all_orgs);
-				$orcid_data["employment"] = $all_orgs;
-				$orcid_data["source"] = "ORCID";
-				array_push($data, $haplo_data, $orcid_data);
-	     		}
-	     		else{
-		     		// TODO: Ideally this returns the same data as above, so you can find ORCIDs, affiliations, and emails for people at your instittuion even if you don't have their ORCID iD
-		     		// ... then maybe you can look at their email and see why you don't have their iD, etc. etc.
-				$name = $person->names;
-				if ($name){
-					$encoded_name = urlencode($name[0]);
-                			$response = $client->request('GET', $orcid_url.$encoded_name, ["headers" => [ "Accept" => "application/vnd.orcid+json"]]);
-					$data = $response->getBody()->getContents();
-					$orcid_data=json_decode($data);
-					$orcid_identifier = "orcid-identifier";
-					$orcid_id=$orcid_data->result[0]->$orcid_identifier->path;
-				}
-			}
-	                $haplo_string .= "<th>".$person_orcid."</th>".$haplo_name_string.$haplo_email_string."<th>University of Haplo</th></tr>";
-			$orcid_string .= "<th>".$person_orcid."</th><th>".$orcid_name_string."</th>".$orcid_email_string.$orcid_employment_string."</tr>";
-			$table_string .= $haplo_string.$orcid_string;
-		}
-		$table_string .= "</table>";
+		$haplo_file = file_get_contents("data/Haplo.json");
+		$haplo_data = json_decode($haplo_file, true);
+		$haplo_data = addOrcidToData($haplo_data, "Haplo");
+		$eprints_file = file_get_contents("data/Eprints.json");
+		$eprints_data = json_decode($eprints_file, true);
+		$eprints_data = addOrcidToData($haplo_data, "EPrints");
+		$data = array();
+		array_push($data, $eprints_data, $haplo_data);
       		file_put_contents("data/output.json", json_encode($data, JSON_PRETTY_PRINT));
-		HtmlFormat::$data = $table_string;
-		return $table_string;
+	}
+	public function PrintOutput(){
+		$output_file = file_get_contents("data/output.json");
+		$output_string = convertDataToHtml(json_decode($output_file));
+		echo $output_string;
 	}
 }
 ?>

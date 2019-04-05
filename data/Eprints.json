@@ -1,0 +1,177 @@
+[
+{
+   "orcidIsAuthenticated" : "true",
+   "emails" : [
+      "adam.vialsmoore@jisc.ac.uk"
+   ],
+   "repositoryId" : [
+      "2"
+   ],
+   "orcid" : [
+      "0000-0002-2085-1908"
+   ],
+   "publishedWorks" : [
+      {
+         "pubmedID" : [],
+         "doi" : [
+            "doi:10.1016/j.compedu.2014.03.004"
+         ],
+         "pubmedCentralId" : [],
+         "issn" : [
+            "03601315"
+         ],
+         "title" : [
+            "Iterative augmentation of a medical training simulator: Effects of affective metacognitive scaffolding"
+         ],
+         "isbn" : [],
+         "localId" : [
+            "http://63.35.7.234/eprints/1/"
+         ]
+      },
+      {
+         "title" : [
+            "Funny Evidence: Female Comics are the New Policy Entrepreneurs"
+         ],
+         "localId" : [
+            "http://63.35.7.234/eprints/4/"
+         ],
+         "isbn" : [],
+         "doi" : [
+            "doi:10.1111/1467-8500.12280"
+         ],
+         "pubmedID" : [],
+         "issn" : [
+            "03136647"
+         ],
+         "pubmedCentralId" : []
+      },
+      {
+         "isbn" : [],
+         "localId" : [
+            "http://63.35.7.234/eprints/336/"
+         ],
+         "title" : [
+            "Migration routes of the Common Shoveler"
+         ],
+         "pubmedCentralId" : [],
+         "issn" : [],
+         "pubmedID" : [],
+         "doi" : []
+      },
+      {
+         "isbn" : [],
+         "localId" : [
+            "http://63.35.7.234/eprints/339/"
+         ],
+         "title" : [
+            "Fulvous Whistling Ducks and Man"
+         ],
+         "pubmedCentralId" : [],
+         "issn" : [],
+         "doi" : [],
+         "pubmedID" : []
+      },
+      {
+         "pubmedCentralId" : [],
+         "issn" : [],
+         "pubmedID" : [],
+         "doi" : [
+            "10.1016/j.beth.2011.03.007"
+         ],
+         "isbn" : [],
+         "localId" : [
+            "http://63.35.7.234/eprints/356/"
+         ],
+         "title" : [
+            "Cuban Tree Frogs in the Wild"
+         ]
+      },
+      {
+         "title" : [
+            "Green & Black Poison Arrow Frogs in the Wild"
+         ],
+         "isbn" : [],
+         "localId" : [
+            "http://63.35.7.234/eprints/359/"
+         ],
+         "doi" : [],
+         "pubmedID" : [],
+         "pubmedCentralId" : [],
+         "issn" : []
+      },
+      {
+         "title" : [
+            "Green Basilisks in Captivity"
+         ],
+         "localId" : [
+            "http://63.35.7.234/eprints/387/"
+         ],
+         "isbn" : [],
+         "pubmedID" : [],
+         "doi" : [],
+         "issn" : [],
+         "pubmedCentralId" : []
+      },
+      {
+         "pubmedID" : [],
+         "doi" : [],
+         "pubmedCentralId" : [],
+         "issn" : [],
+         "title" : [
+            "Observations on the Green Vine Snake"
+         ],
+         "isbn" : [],
+         "localId" : [
+            "http://63.35.7.234/eprints/388/"
+         ]
+      },
+      {
+         "localId" : [
+            "http://63.35.7.234/eprints/396/"
+         ],
+         "isbn" : [],
+         "title" : [
+            "Observations on the Rock Iguana"
+         ],
+         "issn" : [],
+         "pubmedCentralId" : [],
+         "pubmedID" : [],
+         "doi" : []
+      },
+      {
+         "title" : [
+            "Mating rituals of the Spotted Turtle"
+         ],
+         "isbn" : [],
+         "localId" : [
+            "http://63.35.7.234/eprints/401/"
+         ],
+         "pubmedID" : [],
+         "doi" : [],
+         "pubmedCentralId" : [],
+         "issn" : []
+      },
+      {
+         "title" : [
+            "Yellow Spotted Amazon River Turtle"
+         ],
+         "localId" : [
+            "http://63.35.7.234/eprints/404/"
+         ],
+         "isbn" : [],
+         "pubmedID" : [],
+         "doi" : [],
+         "issn" : [],
+         "pubmedCentralId" : []
+      }
+   ],
+   "typeOfPerson" : [
+      "admin"
+   ],
+   "names" : [
+      "Dr Adam Vials Moore"
+   ]
+}
+
+]
+
