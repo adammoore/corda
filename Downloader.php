@@ -3,6 +3,8 @@ require 'vendor/autoload.php';
 use Luracast\Restler\Format\HtmlFormat;
 
 function listToColumn($list){
+	// helper, converts a list (array) into a line broken column html like <th>Item1</br>Item2</br>...</br></th>
+	// returns <th></th> if list (array) is empty 
 	$row_string = "<th>";
 	foreach ($list as $item){
 		$row_string .= $item."<br/>";
