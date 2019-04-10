@@ -45,7 +45,18 @@ function getOrcidData($orcid){
 }
 
 function deriveOrcidUser($person){
-	// implement this function to use data in the person record to derive ORCID data 
+	/* implement this function to use data in the person record to derive ORCID data- current code commented out represents 
+	an early prototype of using the name in a person to make a request to the orcid api to retrieve a full orcid record 
+	
+		$encoded_name = urlencode($name[0]);
+		$response = $client->request('GET', $orcid_url.$encoded_name, ["headers" => [ "Accept" => "application/vnd.orcid+json"]]);
+		print("<br>");
+		$data = $response->getBody()->getContents();
+		$orcid_data=json_decode($data);
+		$orcid_identifier = "orcid-identifier";
+		$orcid_id=$orcid_data->result[0]->$orcid_identifier->path;
+		print ($orcid_id.", ". $name[0].", "."ORCID API");	
+	*/
 }
 
 
@@ -72,11 +83,14 @@ function addOrcidToData($data, $source){
 }
 
 function convertDataToHtml($data){
+	// Converts the provided data object into html and returns it as a string
 	$html = "<table><tr><th>Source</th><th>ORCID id</th><th>Names</th><th>Emails</th><th>Employment</th><th>typeOfPerson</th></tr>";
 	foreach($data as $datatable){
+		// haplo and orcid are currently their own lists within the returned JSON object so iterate over these separately
 		foreach($datatable as $person){
 			$person_html = "<tr>";
 			$person_html .= "<th>".$person->source."</th>";
+			// This ought to be replaced by ternaries ?
 			if ($person->orcid){
 				$person_html .= "<th>".($person->orcid)[0]."</th>";
 			}
