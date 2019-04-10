@@ -10,8 +10,8 @@ These will make requests to Haplo and Eprints APIs, and return the JSON of these
 
 # Downloader.php
 Two endpoints:
-- http://63.35.7.234/corda-restler/public/corda/index.php/Downloader/PrintOutput
 - http://63.35.7.234/corda-restler/public/corda/index.php/Downloader/ReturnIDList
+- http://63.35.7.234/corda-restler/public/corda/index.php/Downloader/PrintOutput
 
 ## ReturnIDList
 This endpoint will go through both the `data/Haplo.json` and `data/Eprints.json` files in the data directory. If any users have an ORCID, then it will attempt to make a request to the ORCID API to retrieve additional information regarding their employment etc... 
