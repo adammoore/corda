@@ -132,6 +132,7 @@ function convertDataToHtml($data){
 }
 
 class Downloader{
+	// Downloader represents a base endpoint, the functions ReturnIDList and PrintOutput each represent verbs
 	public function ReturnIDList(){
 		$haplo_file = file_get_contents("data/Haplo.json");
 		$haplo_data = json_decode($haplo_file, true);
